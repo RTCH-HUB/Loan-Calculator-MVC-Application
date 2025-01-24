@@ -1,0 +1,92 @@
+﻿@model Loan_Calculator_MVC.Models.loan
+<style>
+    #calculatorForm {
+        width: 50%;
+    }
+
+    .ctn {
+        float: right;
+        width: 60%;
+        padding: 10px;
+    }
+
+    .output {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    h1{
+        background-image: url('../../Image/Background.jpeg');
+        color: white;
+        padding: 40px;
+        font-weight: bold;
+    }
+    label {
+        font-weight: bold;
+        font-size: 15px;
+    }
+    h3 {
+        font-weight: bold;
+        color: darkorange;
+    }
+</style>
+<!DOCTYPE Html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Calculator Page</title>
+</head>
+<body>
+    <h1>Motor Loan Calculator</h1>
+    <div>
+        @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+        {
+            <div class="ctn">
+                <h3>Estimated Loan Details</h3>
+                <div class="output">
+                    <div class="form-group">
+                        <label for="manufacturer">Manifacturer:</label>
+                        <input type="text" class="form-control" readonly value="@Model.DisManufacturer">
+                    </div>
+                    <div class="form-group">
+                        <label for="UnitPrice">Unit Price:</label>
+                        <input type="text" class="form-control" readonly value="@Model.DisUnitPrice">
+                    </div>
+                    <div class="form-group">
+                        <label for="Monthly Amortization">Monthly Amortization:</label>
+                        <input type="text" class="form-control" readonly value="@Model.DisAmortizaton">
+                    </div>
+                    <div class="form-group">
+                        <label for="Downpayment">Downpayment:</label>
+                        <input type="text" class="form-control" readonly value="@Model.DisplayDownpayment">
+                    </div>
+                    <div class="form-group">
+                        <label for="Loanable">Loanable Amount:</label>
+                        <input type="text" class="form-control" readonly value="@Model.DisLoanable">
+                    </div>
+                </div>
+            </div>
+            <form id="calculatorForm">
+                <div class="form-group">
+                    <label>Select Manufacturer:</label>
+                    @Html.DropDownListFor(model => model.Manufacturer, new SelectList(new[] { "", "Honda", "Yamaha", "Kawasaki", "Suzuki", "BMW", "Ducati" }), new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label for="UnitPrice">Unit Price:</label>
+                    <input type="number" class="form-control" id="UnitPrice" name="UnitPrice" value="@(Model.UnitPrice == 0 ? "" : Model.UnitPrice.ToString())">
+                </div>
+                <div class="form-group">
+                    <label>Select Downpayment Rate:</label>
+                    @Html.DropDownListFor(model => model.DPRate, new SelectList(new[] { "", "10%", "15%", "20%", "25%", "30%" }), new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>Select Payment Term</label>
+                    @Html.DropDownListFor(model => model.Term, new SelectList(new[] { "", "12 months", "24 months", "36 months", "48 months", }), new { @class = "form-control" })
+                </div>
+                <input type="submit" value="Compute" class="btn btn-success btn-block" name="compute" />
+            </form>
+        }
+    </div>
+</body>
+</html>
+
