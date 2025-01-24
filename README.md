@@ -1,3 +1,4 @@
+![Image Alt](https://github.com/RTCH-HUB/Loan-Calculator-MVC-Application/blob/29132f7f9c008b85c677286ee2176ed8075927a9/Loan%20Calculator.png)
 Motor Loan Calculator MVC Application Readme
 
 This is a Motor Loan Calculator MVC application built using ASP.NET MVC framework. The application allows users to calculate the monthly amortization for a motor loan. Users can specify the following:
